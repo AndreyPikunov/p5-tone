@@ -46,18 +46,16 @@ function draw() {
   bass.oscillator.volume.value = map(noiseAmplitude, 0, 1, -60, 0.0);
 }
 
-function keyPressed() {
-  if (key === " ") {
-    if (!soundStarted) {
-      startSound();
-      soundStarted = true;
-    } else {
-      stopSound();
-      soundStarted = false;
-    }
+function mousePressed() {
+  if (!soundStarted) {
+    startSound();
+    soundStarted = true;
+  } else {
+    stopSound();
+    soundStarted = false;
   }
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+// }
