@@ -6,7 +6,7 @@ let noiseFalloff = 0.5;
 let noiseFrequency = 0.05;
 
 function setup() {
-  createCanvas(512, 512);
+  createCanvas(256, 256);
 }
 
 function draw() {
@@ -21,8 +21,8 @@ function draw() {
   // Draw the timeline
   stroke("black");
   strokeWeight(1);
-  line(0, centerY, width, centerY);
-  line(0, centerY - graphHeight, width, centerY - graphHeight);
+  // line(0, centerY, width, centerY);
+  // line(0, centerY - graphHeight, width, centerY - graphHeight);
   // Draw the noise curve
   strokeWeight(2);
   noFill();
@@ -31,19 +31,19 @@ function draw() {
     let x = map(offset, -N, N, 0, width);
 
     let noiseValue = noise(noiseFrequency * (frameCount + offset));
-    let y = centerY - noiseValue * graphHeight;
+    let y = centerY - noiseValue * graphHeight + centerY / 2;
     vertex(x, y);
   }
   endShape();
 
   // Draw current frame indicator
-  strokeWeight(5);
-  stroke("white");
+  strokeWeight(10);
+  stroke("black");
   noiseAmplitude = noise(noiseFrequency * frameCount);
-  let currentY = centerY - noiseAmplitude * graphHeight;
+  let currentY = centerY - noiseAmplitude * graphHeight + centerY / 2;
   point(width / 2, currentY);
 
-  bass.oscillator.volume.value = map(noiseAmplitude, 0, 1, -40, -5);
+  bass.oscillator.volume.value = map(noiseAmplitude, 0, 1, -60, 0.0);
 }
 
 function keyPressed() {
